@@ -1,7 +1,11 @@
 pipeline {
 
     agent any
+    parameters {
+        choice(name: 'ENV', choices: ['dev','prod'.'test'], description: 'ggggggggggggggg')
+    }
 
+    
     stages {
 
         stage("Build") {
@@ -17,15 +21,9 @@ pipeline {
         }
 
         stage("Deploy") {
-           input {
-                message "select environment"
-                ok "Doneeeeee"
-                parameters {
-                    choice(name: 'ENV', choices: ['dev','prod'.'test'], description: 'ggggggggggggggg')
-                }
-            }
+
             steps {
-                echo "Deploying.... ${ENV} "
+                echo "Deploying.... ${perm.ENV} "
             }
         }
 
