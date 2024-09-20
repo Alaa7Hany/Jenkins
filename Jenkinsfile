@@ -1,32 +1,51 @@
 pipeline {
 
     agent any
-    parameters {
-        choice(name: 'ENV', choices: ['dev','prod','test'], description: '')
+
+    tools {
+        maven "maven3.9"
     }
 
     stages {
 
-        stage("Build") {
+        stage("Build jar file") {
                 steps {
-                    echo 'Building.....'
-                    sh 'echo "hhhhhhh"'
+                    script {
+                        echo "Building jar file....."
+                        sh 'git clone https://github.com/spring-projects/spring-petclinic.git'
+                        sh 'cd spring-petclinic'
+                        sh './mvnw package'
+                        echo "jar file built"
+                    }
                 }
         }
 
-        stage("Test") {
+        stage("build image") {
             steps {
-                echo 'Testing.....'
                 script {
-                    sh 'echo "gggggg"'
+                    echo 'Building Image.......'
+                    sh 'docker build -t 3laaharrrr/petclinic:v2 .'
+                    echo 'Image built'
                 }
             }
         }
 
-        stage("Deploy") {
+        stage("push image") {
 
             steps {
-               echo "Deploying.... ${params.ENV} "
+               script {
+                    echo 'Pushing Image.......'
+
+                    withCredentials([
+                        usernamePassword(credentialsId: 'dockerhub', usernameVariable: USERNAME, passwordVariable: PASSWORD)
+                     ]) {
+                            sh 'echo $PASSWORD | docker login -u $USERNAME --password-stdin'
+                            sh 'docker push 3laaharrrr/petclinic:v2'
+                        }
+
+                    echo 'Image pushed'
+
+               }
             }
         }
 
