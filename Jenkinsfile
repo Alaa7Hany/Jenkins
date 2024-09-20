@@ -22,8 +22,7 @@ pipeline {
         stage("Deploy") {
 
             steps {
-               // echo "Deploying.... ${parms.ENV} "
-                echo 'hhhhhhhhhhhhhhhhhhhhhhhh'
+               echo "Deploying.... ${parms.ENV} "
             }
         }
 
