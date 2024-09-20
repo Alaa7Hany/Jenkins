@@ -1,10 +1,6 @@
 pipeline {
 
     agent any
-    parameters {
-        choice(name: 'ENV', choices: ['dev','prod'.'test'], description: 'ggggggggggggggg')
-    }
-
     
     stages {
 
@@ -23,7 +19,7 @@ pipeline {
         stage("Deploy") {
 
             steps {
-                echo "Deploying.... ${perm.ENV} "
+
             }
         }
 
