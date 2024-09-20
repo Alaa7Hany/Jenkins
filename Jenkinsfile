@@ -17,8 +17,15 @@ pipeline {
         }
 
         stage("Deploy") {
+           input {
+                message "select environment"
+                ok "Doneeeeee"
+                parameters {
+                    choice(name: 'ENV', choices: ['dev','prod'.'test'], description: 'ggggggggggggggg')
+                }
+            }
             steps {
-                echo 'Deploying....'
+                echo "Deploying.... ${ENV} "
             }
         }
 
