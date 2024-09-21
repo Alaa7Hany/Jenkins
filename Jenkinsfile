@@ -11,9 +11,14 @@ pipeline {
         stage("Build jar file") {
                 steps {
                     script {
-                        echo "Building jar file....."
-                        sh 'git clone https://github.com/spring-projects/spring-petclinic.git'
+                        if(!fileExists('spring-petclinic')) {
+                            echo 'Cloning repo....'
+                            sh 'git clone https://github.com/spring-projects/spring-petclinic.git'
+                        } else {
+                            echo 'repo already exists'
+                        }
                         sh 'cd spring-petclinic'
+                        echo "Building jar file....."
                         sh './gradlew package -x test'
                         echo "jar file built"
                     }
