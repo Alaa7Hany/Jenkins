@@ -3,7 +3,7 @@ pipeline {
     agent any
 
     tools {
-        maven "maven3.9"
+        gradle "my-gradle.8"
     }
 
     stages {
@@ -14,7 +14,7 @@ pipeline {
                         echo "Building jar file....."
                         sh 'git clone https://github.com/spring-projects/spring-petclinic.git'
                         sh 'cd spring-petclinic'
-                        sh './mvnw package'
+                        sh './gradlew package -x test'
                         echo "jar file built"
                     }
                 }
