@@ -19,7 +19,7 @@ pipeline {
                         }
                         sh 'cd spring-petclinic'
                         echo "Building jar file....."
-                        echo 'pwd'
+                        sh 'pwd'
                         sh './spring-petclinic/gradlew package -x test'
                         echo "jar file built"
                     }
