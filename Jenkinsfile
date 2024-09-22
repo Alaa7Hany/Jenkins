@@ -45,7 +45,7 @@ pipeline {
                      ]) {
                             sh "echo ${PASSWORD} | docker login -u ${USERNAME} --password-stdin"
                             //sh 'docker push 3laaharrrr/petclinic:v1'
-                            sh 'docker push 3laaharrrr/alpine:latest'
+                            sh 'docker push 3laaharrrr/alpine:v1'
                         }
 
                     echo 'Image pushed'
