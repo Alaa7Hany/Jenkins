@@ -17,7 +17,7 @@ pipeline {
                         } else {
                             echo 'repo already exists'
                         }
-                        // sh 'cd spring-petclinic'
+                        sh 'cd spring-petclinic'
                         echo "Building jar file....."
                         sh './spring-petclinic/gradlew package -x test'
                         echo "jar file built"
