@@ -11,6 +11,7 @@ pipeline {
         stage("Build jar file") {
                 steps {
                     script {
+                        
                         sh 'rm -rf spring-petclinic'
                         if(!fileExists('spring-petclinic')) {
                             echo 'Cloning repo....'
