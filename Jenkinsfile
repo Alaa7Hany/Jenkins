@@ -10,8 +10,8 @@ pipeline {
 
         stage("Build jar file") {
                 steps {
-                    cleanWs()
                     script {
+                        sh 'rm -rf spring-petclinic'
                         if(!fileExists('spring-petclinic')) {
                             echo 'Cloning repo....'
                             sh 'git clone https://github.com/spring-projects/spring-petclinic.git'
