@@ -18,40 +18,40 @@ pipeline {
                             echo 'repo already exists'
                         }
                         echo "Building jar file....."
-                        sh 'cd spring-petclinic; ./gradlew build -x test'
+                 //       sh 'cd spring-petclinic; ./gradlew build -x test'
                         echo "jar file built"
                     }
                 }
         }
 
-        stage("build image") {
-            steps {
-                script {
-                    echo 'Building Image.......'
-                    sh 'docker build -t 3laaharrrr/petclinic:v2 .'
-                    echo 'Image built'
-                }
-            }
-        }
+        // stage("build image") {
+        //     steps {
+        //         script {
+        //             echo 'Building Image.......'
+        //             sh 'docker build -t 3laaharrrr/petclinic:v2 .'
+        //             echo 'Image built'
+        //         }
+        //     }
+        // }
 
-        stage("push image") {
+        // stage("push image") {
 
-            steps {
-               script {
-                    echo 'Pushing Image.......'
+        //     steps {
+        //        script {
+        //             echo 'Pushing Image.......'
 
-                    withCredentials([
-                        usernamePassword(credentialsId: 'dockerhub', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')
-                     ]) {
-                            sh "echo ${PASSWORD} | docker login -u ${USERNAME} --password-stdin"
-                            sh 'docker push 3laaharrrr/alpine:v2'
-                        }
+        //             withCredentials([
+        //                 usernamePassword(credentialsId: 'dockerhub', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')
+        //              ]) {
+        //                     sh "echo ${PASSWORD} | docker login -u ${USERNAME} --password-stdin"
+        //                     sh 'docker push 3laaharrrr/alpine:v2'
+        //                 }
 
-                    echo 'Image pushed'
+        //             echo 'Image pushed'
 
-               }
-            }
-        }
+        //        }
+        //     }
+        // }
 
     }
 
