@@ -1,0 +1,2 @@
+echo "helloooooo"
+docker images
