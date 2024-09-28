@@ -29,7 +29,7 @@ pipeline {
             steps {
                 script {
                     echo 'Building Image.......'
-                    sh 'docker build -t 3laaharrrr/petclinic:v1 .'
+                    sh 'docker build -t 3laaharrrr/petclinic:v2 .'
                     echo 'Image built'
                 }
             }
@@ -45,7 +45,7 @@ pipeline {
                         usernamePassword(credentialsId: 'dockerhub', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')
                      ]) {
                             sh "echo ${PASSWORD} | docker login -u ${USERNAME} --password-stdin"
-                            sh 'docker push 3laaharrrr/petclinic:v1'
+                            sh 'docker push 3laaharrrr/petclinic:v2'
                         }
 
                     echo 'Image pushed'
